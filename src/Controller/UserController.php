@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends AbstractController
 {
@@ -14,5 +16,22 @@ class UserController extends AbstractController
         return $this->render('user/index.html.twig', [
             'controller_name' => 'UserController',
         ]);
+    }
+
+    #[Route('/login', name: 'login', methods: ['POST'])]
+    public function userLogin(Request $request):  RedirectResponse
+    {
+        $email = "";
+        $password = "";
+
+        if($request->request->get('emal') !== null && $request->request->get('password') !== null){
+            $email = $request->request->get('emal');
+            $password = $request->request->get('password');
+            echo "ola";
+        }else{
+            echo "no";
+        }
+        
+        return $this->redirectToRoute('homepage');
     }
 }
