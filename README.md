@@ -18,6 +18,7 @@ Symfony Flex automatically creates phpunit.xml.dist and tests/bootstrap.php. If 
 
 <b>NOTE:</b> After these steps I have test folder and these files in all projects that I did with symfony.
 
+[Reference](https://symfony.com/doc/current/testing.html)
 ## Must-have features
 Create the following entities
 - User
@@ -32,3 +33,27 @@ Create the following entities
     - Relation to room & User
     - Start date (datetime)
     - End date (datetime)
+
+## Installing Doctrine
+
+        composer require symfony/orm-pack
+        composer require --dev symfony/maker-bundle
+
+[Reference](https://symfony.com/doc/current/doctrine.html)
+## Start database
+
+Create a schema
+
+        php bin/console doctrine:database:create
+
+Create an object and new table
+
+        php bin/console make:entity
+
+Then
+
+        php bin/console make:migration
+
+Then 
+
+        php bin/console doctrine:migrations:migrate
