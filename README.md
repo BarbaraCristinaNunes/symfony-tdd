@@ -34,13 +34,15 @@ Create the following entities
     - Start date (datetime)
     - End date (datetime)
 
-## Installing Doctrine
+## Database
+### Installing Doctrine
 
         composer require symfony/orm-pack
         composer require --dev symfony/maker-bundle
 
 [Reference](https://symfony.com/doc/current/doctrine.html)
-## Start database
+
+### Start Database
 
 Create a schema
 
