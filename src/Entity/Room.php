@@ -47,4 +47,8 @@ class Room
 
         return $this;
     }
+
+    function canBook(User $user) {
+        return ($this->isPremium() && $user->isPremium()) || !$this->isPremium();
+    }
 }
