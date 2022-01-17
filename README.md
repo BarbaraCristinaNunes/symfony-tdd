@@ -59,3 +59,12 @@ Then
 Then 
 
         php bin/console doctrine:migrations:migrate
+
+# Project
+
+        php bin/console make:controller
+
+Created:
+* HomepageController.php 
+* homepage folder 
+* index.html.twig
