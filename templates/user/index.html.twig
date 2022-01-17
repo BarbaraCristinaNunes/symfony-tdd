@@ -8,32 +8,16 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 method="post" action="registration">
-            <h1>Registration</h1>
-            <label>Email:</label></br>
-            <input type="text" name="email"></br>
+<form method="post" action="login">
+    <h1>Login</h1>
 
-            <label>Password:</label></br>
-            <input type="text" name="password"></br>
 
-            <label>Confirm password:</label></br>
-            <input type="text" name="confirm"></br>
+    <label>Email:</label></br>
+    <input type="text" name="email"></br>
 
-            <input type="submit" name="submit">
-        </div>
-        <div class="col-md-6 method="post" action="login">
-            <h1>Login</h1>
+    <label>Password:</label></br>
+    <input type="text" name="password"></br>
 
-            <label>Email:</label></br>
-            <input type="text" name="email"></br>
-
-            <label>Password:</label></br>
-            <input type="text" name="password"></br>
-            
-            <input type="submit" name="submit">
-        </div>
-    </div>
-</div>
+    <input type="submit" name="submit">
+</form>
 {% endblock %}
