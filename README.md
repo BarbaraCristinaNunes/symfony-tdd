@@ -16,9 +16,7 @@
 
 Symfony Flex automatically creates phpunit.xml.dist and tests/bootstrap.php. If these files are missing, you can try running the recipe again using composer recipes:install phpunit/phpunit --force -v.
 
-<b>NOTE:</b> I don't have tests/bootstrap.php. I ran composer recipes:install phpunit/phpunit --force -v but I had the following erro.
-
-![error](/public/error.jpg)
+<b>NOTE:</b> After these steps I have test folder and these files in all projects that I did with symfony.
 
 ## Must-have features
 Create the following entities
