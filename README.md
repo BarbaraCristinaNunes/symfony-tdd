@@ -19,7 +19,11 @@ Symfony Flex automatically creates phpunit.xml.dist and tests/bootstrap.php. If 
 <b>NOTE:</b> After these steps I have test folder and these files in all projects that I did with symfony.
 
 [Reference](https://symfony.com/doc/current/testing.html)
-## Must-have features
+
+## Database
+
+### Must-have features
+
 Create the following entities
 - User
     - password, email (if working with the login)
@@ -31,10 +35,10 @@ Create the following entities
     - onlyForPremiumMembers (bool, default false)
 - Bookings
     - Relation to room & User
-    - Start date (datetime)
-    - End date (datetime)
-
-## Database
+    - Start date (date)
+    - End date (date)
+    - Start time (datetime)
+    - End time (datetime)
 ### Installing Doctrine
 
         composer require symfony/orm-pack
