@@ -14,7 +14,14 @@
     This friendly message is coming from:
     <ul>
     {% for room in rooms%}
-        <li>{{room.name}}</li>
+        <li>
+            <a href="{{ path('bookings') }}">
+                {{room.name}}
+            </a>
+            {% if room.premiumMember == true %}    
+                <p>Premium Member</p>
+            {% endif %}
+        </li>
     {% endfor %}
     </ul>
 </div>
