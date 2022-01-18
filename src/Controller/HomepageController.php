@@ -28,9 +28,11 @@ class HomepageController extends AbstractController
     #[Route('/booking', name: 'booking')]
     public function goToRoom(Request $request, Session $session): RedirectResponse
     {
-        $room = $request->request->get('room');
+        $roomId = $request->request->get('room');
+        $session->set('roomId', $roomId);
 
-        var_dump($room);
-        return $this->redirectToRoute('homepage');
+        var_dump($roomId);
+
+        return $this->redirectToRoute('bookings');
     }
 }
