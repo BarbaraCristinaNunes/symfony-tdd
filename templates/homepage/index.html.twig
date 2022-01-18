@@ -8,21 +8,17 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<form method="post" action="booking">
 
-    This friendly message is coming from:
-    <ul>
+<label for="rooms"> Choose your room: </label>
+<select name="room">
     {% for room in rooms%}
-        <li>
-            <a href="{{ path('bookings') }}">
-                {{room.name}}
-            </a>
-            {% if room.premiumMember == true %}    
-                <p>Premium Member</p>
-            {% endif %}
-        </li>
+
+        <option value={{room.id}}>{{room.name}} {{room.id}}</option>
+                
     {% endfor %}
-    </ul>
-</div>
+</select>
+    <input type="submit" name="submit">
+</form>
+
 {% endblock %}
