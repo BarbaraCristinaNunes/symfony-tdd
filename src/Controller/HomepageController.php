@@ -17,12 +17,6 @@ class HomepageController extends AbstractController
     {
         $rooms = $doctrine->getRepository(Room::class)->findAll();
 
-        // var_dump("data: ", $data[0]['name']);
-
-        // $room = new Response('Check out this great room: '.$data->getName());
-
-        // var_dump("room: ", $room);
-
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
             'rooms' => $rooms,
