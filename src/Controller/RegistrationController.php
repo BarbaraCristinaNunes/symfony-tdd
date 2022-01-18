@@ -25,14 +25,15 @@ class RegistrationController extends AbstractController
         $password = "";
         $confirm = "";
 
-        if($request->request->get('emal') !== null && $request->request->get('password') !== null && $request->request->get('confirm') !== null){
+        if($request->request->get('emal') !== "" && $request->request->get('password') !== "" && $request->request->get('confirm') !== ""){
             $email = $request->request->get('emal');
             $password = $request->request->get('password');
             $confirm = $request->request->get('confirm');
             echo "ola";
-            return $this->redirectToRoute('user');
+            return $this->redirectToRoute('user');    
         }else{
             echo "no";
+            return $this->redirectToRoute('registration');
         }       
     }
 }
