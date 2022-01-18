@@ -22,6 +22,7 @@ class BookingsRepository extends ServiceEntityRepository
     // /**
     //  * @return Bookings[] Returns an array of Bookings objects
     //  */
+
     /*
     public function findByExampleField($value)
     {
