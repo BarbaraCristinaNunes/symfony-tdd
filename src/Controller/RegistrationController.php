@@ -30,7 +30,7 @@ class RegistrationController extends AbstractController
             $password = $request->request->get('password');
             $confirm = $request->request->get('confirm');
             echo "ola";
-            return $this->redirectToRoute('user');    
+            return $this->redirectToRoute('login');    
         }else{
             echo "no";
             return $this->redirectToRoute('registration');
