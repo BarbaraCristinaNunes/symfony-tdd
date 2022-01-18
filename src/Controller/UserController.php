@@ -24,7 +24,7 @@ class UserController extends AbstractController
         $email = "";
         $password = "";
 
-        if($request->request->get('emal') !== null && $request->request->get('password') !== null){
+        if($request->request->get('emal') !== "" && $request->request->get('password') !== ""){
             $email = $request->request->get('emal');
             $password = $request->request->get('password');
             echo "ola";
