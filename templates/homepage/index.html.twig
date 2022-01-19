@@ -13,12 +13,22 @@
 <label for="rooms"> Choose your room: </label>
 <select name="room">
     {% for room in rooms%}
-
-        <option value={{room.id}}>{{room.name}} {{room.id}}</option>
+    
+        <option value={{room.id}}>{{room.name}}</option>
                 
     {% endfor %}
 </select>
+
+<label for="users"> Choose your user: </label>
+<select name="user">
+    {% for user in users%}
+
+        <option value={{user.id}}>{{user.email}}</option>
+                
+    {% endfor %}
+</select></br>
     <input type="submit" name="submit">
 </form>
 
+{{message}}
 {% endblock %}
