@@ -19,7 +19,10 @@ class Room
     #[ORM\Column(type: 'boolean')]
     private $premiumMember;
 
-    // I have to write a constructor
+    public function __construct(bool $premiumMember)
+    {
+        $this->premiumMember = $premiumMember;
+    }
 
     public function getId(): ?int
     {
