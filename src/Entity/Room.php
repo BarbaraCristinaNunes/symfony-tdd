@@ -19,6 +19,8 @@ class Room
     #[ORM\Column(type: 'boolean')]
     private $premiumMember;
 
+    // I have to write a constructor
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,6 +51,6 @@ class Room
     }
 
     function canBook(User $user) {
-        return ($this->isPremium() && $user->isPremium()) || !$this->isPremium();
+        return ($this->getPremiumMember() && $user->getPremiumMember()) || !$this->getPremiumMember();
     }
 }
