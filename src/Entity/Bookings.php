@@ -30,6 +30,12 @@ class Bookings
 
     #[ORM\Column(type: 'datetime')]
     private $end_time;
+    
+
+    public function __construct()
+    {
+        
+    }
 
     public function getId(): ?int
     {
@@ -106,5 +112,31 @@ class Bookings
         $this->end_time = $end_time;
 
         return $this;
+    }
+
+    public function checkTime(DateTime $start, DateTime $end): bool
+    {
+        $diffInterval = $end->diff($start);
+        $diffDay = $diffInterval->d;
+        $diffMonth = $diffInterval->m;
+        $diffYear = $diffInterval->y;
+        $diffHours = $diffInterval->h;
+        $diffMinutes = $diffInterval->i;
+        
+        $time = ($diffHour * 60) + $diffMinutes;
+        
+        
+        var_dump("day: ", $diffDay);
+        var_dump("month: ", $diffMonth);
+        var_dump("year: ", $diffYear);
+        var_dump("hour: ", $diffHours);
+        var_dump("min: ", $diffMinutes);
+        var_dump("min to hour: ", $time);
+        if($diffDay == 0 && $diffMonth == 0 && $diffYear == 0 && $time > 0 && $time < 240){
+            
+           return true;
+
+        }
+        return false;
     }
 }
