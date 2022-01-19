@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -81,5 +82,20 @@ class User
         $this->premiumMember = $premiumMember;
 
         return $this;
+    }
+
+    public function checkCredit($credit, $start, $end): bool
+    {
+        $diffInterval = $end->diff($start);
+        $diffHours = $diffInterval->h;
+        $diffMinutes = $diffInterval->i;
+
+        $time = ($diffHours * 60) + $diffMinutes;
+
+        if($time * 0.03 < $credit){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
