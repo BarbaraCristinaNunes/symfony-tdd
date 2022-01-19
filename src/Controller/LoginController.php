@@ -34,7 +34,7 @@ class LoginController extends AbstractController
 
         if($request->request->get('emal') === "" || $request->request->get('password') === ""){
             $message = "No field can be empty!";
-
+            
             return $this->render('login/index.html.twig', [
                 'controller_name' => 'LoginController',
                 'message' => $message,
@@ -42,11 +42,17 @@ class LoginController extends AbstractController
 
         }else{
 
-            $email = $request->request->get('emal');
+            $email = $request->request->get('email');
             $password = $request->request->get('password');
-            $db = $doctrine->getRepository(User::class)->find($email);
+            $db = $doctrine->getRepository(User::class)->findOneBy(array('email' => $email));
+            $dbPassword = $db->getPassword();
+            $dbPremium = $db->getPremiumMember();
 
-            if($db !== null || new Response($db->getPassword()) !== $password){
+            // var_dump($db);
+            var_dump($email, $password);
+            var_dump("premium: ", $dbPremium);
+
+            if(!$db || $dbPassword !== $password){
                 $message = "Email  or password is not correct!";
     
                 return $this->render('login/index.html.twig', [
@@ -55,7 +61,7 @@ class LoginController extends AbstractController
                 ]);
     
             }else{
-                $session->set('userId', new Response(db->getId()));
+                $session->set('userId', $dbPremium);
     
                 return $this->render('homepage/index.html.twig');
             }
