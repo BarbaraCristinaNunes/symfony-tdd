@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BookingsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: BookingsRepository::class)]
 class Bookings
@@ -123,7 +124,7 @@ class Bookings
         $diffHours = $diffInterval->h;
         $diffMinutes = $diffInterval->i;
         
-        $time = ($diffHour * 60) + $diffMinutes;
+        $time = ($diffHours * 60) + $diffMinutes;
         
         
         var_dump("day: ", $diffDay);
@@ -132,8 +133,8 @@ class Bookings
         var_dump("hour: ", $diffHours);
         var_dump("min: ", $diffMinutes);
         var_dump("min to hour: ", $time);
-        if($diffDay == 0 && $diffMonth == 0 && $diffYear == 0 && $time > 0 && $time < 240){
-            
+        if($diffDay == 0 && $diffMonth == 0 && $diffYear == 0 && $time >= 0 && $time <= 240){
+
            return true;
 
         }
