@@ -2,6 +2,9 @@
 use PHPUnit\Framework\TestCase;
 use App\Entity\Room;
 use App\Entity\User;
+use App\Entity\Bookings;
+use DateTime;
+// use Doctrine\Persistence\ManagerRegistry;
 
 class CheckRoomAvailabilityTest extends TestCase
 {
@@ -30,5 +33,32 @@ class CheckRoomAvailabilityTest extends TestCase
         $user = new User($userVar);
 
         $this->assertEquals($expectedOutput, $room->canBook($user));
+    }
+
+
+    public function dataProviderForBookingTime() : array
+    {
+        new DateTime();
+
+        return [
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), true],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 18:05:05'), false],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 10:05:05'), true],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:25:05'), false]
+        ];
+    }
+     /**
+     * function has to start with Test
+     * @dataProvider dataProviderForBookingTime
+     */
+    public function testBookingTime(DateTime $start, DateTime $end, bool $expectedOutput)
+    {
+        $booking = new Bookings();
+        $this->assertEquals($expectedOutput, $booking->checkTime($start, $end));
+    }
+
+    public function checkCanPay()
+    {
+        
     }
 }
