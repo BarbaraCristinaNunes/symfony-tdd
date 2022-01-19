@@ -4,7 +4,6 @@ use App\Entity\Room;
 use App\Entity\User;
 use App\Entity\Bookings;
 use DateTime;
-// use Doctrine\Persistence\ManagerRegistry;
 
 class CheckRoomAvailabilityTest extends TestCase
 {
@@ -57,8 +56,23 @@ class CheckRoomAvailabilityTest extends TestCase
         $this->assertEquals($expectedOutput, $booking->checkTime($start, $end));
     }
 
-    public function checkCanPay()
+    public function dataProviderForTestcheckCanPay() : array
     {
-        
+
+        return [
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), 15, true],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 18:05:05'), 5, false],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 10:05:05'), 500, true],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:25:05'), 2, false]
+        ];
+    }
+     /**
+     * function has to start with Test
+     * @dataProvider dataProviderForTestcheckCanPay
+     */
+    public function testCheckCanPay(DateTime $start, DateTime $end, int $credit, bool $expectedOutput)
+    {
+        $user = new User(true); 
+        $this->assertEquals($expectedOutput, $user->checkCredit($credit, $start, $end));
     }
 }
