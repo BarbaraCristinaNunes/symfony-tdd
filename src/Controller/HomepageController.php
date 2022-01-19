@@ -10,29 +10,73 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Room;
+use App\Entity\User;
 use App\Repository\RoomRepository;
 
 class HomepageController extends AbstractController
 {
     #[Route('/homepage', name: 'homepage')]
-    public function showRooms(ManagerRegistry $doctrine): Response
+    public function showRoomsAndUsers(ManagerRegistry $doctrine): Response
     {
         $rooms = $doctrine->getRepository(Room::class)->findAll();
+        $users = $doctrine->getRepository(User::class)->findAll();
+        $message = "";
 
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
             'rooms' => $rooms,
+            'users' => $users,
+            'message' => $message,
         ]);
     }
 
     #[Route('/booking', name: 'booking')]
-    public function goToRoom(Request $request, Session $session): RedirectResponse
+    public function roomValidation(Request $request, ManagerRegistry $doctrine): Response
     {
+
+        $rooms = $doctrine->getRepository(Room::class)->findAll();
+        $users = $doctrine->getRepository(User::class)->findAll();
+        $message = "";
+
         $roomId = $request->request->get('room');
-        $session->set('roomId', $roomId);
+        $userId = $request->request->get('user');
 
-        var_dump($roomId);
+        $room = $doctrine->getRepository(Room::class)->findOneBy(array('id' => $roomId));
+        $user = $doctrine->getRepository(User::class)->findOneBy(array('id' => $userId));
 
-        return $this->redirectToRoute('bookings');
+        var_dump($room->getPremiumMember());
+        var_dump($user->getPremiumMember());
+
+        if($room->getPremiumMember() == true && $user->getPremiumMember() == false){
+            $message = "You can not booking this room!";
+
+            return $this->render('homepage/index.html.twig', [
+                'controller_name' => 'HomepageController',
+                'rooms' => $rooms,
+                'users' => $users,
+                'message' => $message,
+            ]);
+        }        
+
+        // return $this->goToRoom($room);
     }
+
+    // public function goToRoom($room): RedirectResponse
+    // {
+    //     $roomId = $request->request->get('room');
+    //     $userId = $request->request->get('user');
+    //     $message = "";
+
+    //     var_dump($roomPremium);
+    //     var_dump($userPremium);
+
+    //     $room = $doctrine->getRepository(Room::class)->findOneBy(array('id' => $roomId));
+    //     $user = $doctrine->getRepository(User::class)->findOneBy(array('id' => $userId));
+
+    //     if($room->getPremiumMember() == 0 && $user->getPremiumMember() == 1){
+    //         $message = "You can not booking this room!";
+    //     }        
+
+    //     // return $this->redirectToRoute('bookings');
+    // }
 }
