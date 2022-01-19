@@ -1,20 +1,34 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use App\Entity\Room;
+use App\Entity\User;
 
 class CheckRoomAvailabilityTest extends TestCase
 {
     /**
      * function has to start with Test
      */
-    public function testPremiumRoom(): void
+
+    public function dataProviderForPremiumRoom() : array
     {
-        $room = new Room(false);
-        $user = new User(false);
+        return [
+            [true, true, true],
+            [false, false, true],
+            [false, true, true],
+            [true, false, false]
+        ];
+    }
 
-        $this->assertTrue($room->canBook($user));
+    /**
+     * function has to start with Test
+     * @dataProvider dataProviderForPremiumRoom
+     */
+    public function testPremiumRoom(bool $roomVar, bool $userVar, bool $expectedOutput): void
+    {
 
-        $room = new Room(true);//premium room, with no premium user
-        $user = new User(false);
+        $room = new Room($roomVar);
+        $user = new User($userVar);
 
-        $this->assertFalse($room->canBook($user));
+        $this->assertEquals($expectedOutput, $room->canBook($user));
     }
 }
