@@ -80,4 +80,4 @@ The following conditions apply:
 - Rooms marked as premium can only be hired for premium members <b>OK</b>
 - No room can be booked for more than 4 hours <b>OK</b>
 - Check if they can afford the rent for the room <b>OK</b>
-- Room can only be booked if no other User has already booked it in this time (this is the most difficult condition)
+- Room can only be booked if no other User has already booked it in this time (this is the most difficult condition) <b>OK</b>
