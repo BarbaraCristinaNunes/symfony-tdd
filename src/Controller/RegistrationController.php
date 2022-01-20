@@ -41,7 +41,7 @@ class RegistrationController extends AbstractController
             $password = $request->request->get('password');
             $confirm = $request->request->get('confirm');            
 
-            var_dump("validation email: ", $email, "password: ", $password, "premium: ", $premium);
+            // var_dump("validation email: ", $email, "password: ", $password, "premium: ", $premium);
             return $this->userRegistration($email, $password, $premium, $doctrine);
 
         }else{
@@ -65,7 +65,7 @@ class RegistrationController extends AbstractController
     public function userRegistration($email, $password, $premium, $doctrine):  RedirectResponse
     {
     
-        var_dump("userRegistration email: ", $email, "password: ", $password, "premium: ", $premium);
+        // var_dump("userRegistration email: ", $email, "password: ", $password, "premium: ", $premium);
 
         $entityManager = $doctrine->getManager();
         $user =new User();
