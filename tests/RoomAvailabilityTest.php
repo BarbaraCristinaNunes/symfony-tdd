@@ -75,4 +75,27 @@ class CheckRoomAvailabilityTest extends TestCase
         $user = new User(true); 
         $this->assertEquals($expectedOutput, $user->checkCredit($credit, $start, $end));
     }
+
+
+    public function dataProviderForTestSameBooming()
+    {
+        return [
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 11:05:05'), new DateTime('2020-12-12 15:05:05'), false],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 09:05:05'), new DateTime('2020-12-12 13:05:05'), false],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 18:05:05'), true],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 06:05:05'), new DateTime('2020-12-12 10:05:05'), true],
+        ];
+    }
+
+    /**
+     * function has to start with Test
+     * @dataProvider dataProviderForTestSameBooming
+     */
+    public function testSameBooming(DateTime $start1, DateTime $end1, DateTime $start2, DateTime $end2, bool $expectedOutput)
+    {
+        $booking = new Bookings();
+        $this->assertEquals($expectedOutput, $booking->checkSameBooking($start1, $end1, $start2, $end2));
+
+    }
+
 }
