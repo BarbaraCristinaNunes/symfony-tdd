@@ -11,6 +11,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\User;
+use App\Entity\Room;
 
 
 class LoginController extends AbstractController
@@ -45,25 +46,51 @@ class LoginController extends AbstractController
             $email = $request->request->get('email');
             $password = $request->request->get('password');
             $db = $doctrine->getRepository(User::class)->findOneBy(array('email' => $email));
-            $dbPassword = $db->getPassword();
-            $dbPremium = $db->getPremiumMember();
+            
 
             // var_dump($db);
-            var_dump($email, $password);
-            var_dump("premium: ", $dbPremium);
+            // var_dump($email, $password);
+            // var_dump("premium: ", $dbPremium);
 
-            if(!$db || $dbPassword !== $password){
+            if($db){
+
+                $dbPassword = $db->getPassword();
+                $dbPremium = $db->getPremiumMember();
+                $dbUserId = $db->getId();
+
+                if($dbPassword !== $password){
+                    
+
+                    $message = "Email  or password is not correct!";
+    
+                    return $this->render('login/index.html.twig', [
+                    'controller_name' => 'LoginController',
+                    'message' => $message,
+                    ]);
+
+                }else{
+                    $session->set('Premium', $dbPremium);
+                    $session->set('userName', $email);
+                    $session->set('userId', $dbUserId);
+
+                    $rooms = $doctrine->getRepository(Room::class)->findAll();
+                    $message = "";
+        
+                    return $this->render('homepage/index.html.twig', [
+                        'controller_name' => 'HomepageController',
+                        'rooms' => $rooms,
+                        'message' => $message,
+                        'user' => "Hello ". $session->get('userName'),
+                    ]);
+                }           
+            }else{
+
                 $message = "Email  or password is not correct!";
     
                 return $this->render('login/index.html.twig', [
-                    'controller_name' => 'LoginController',
-                    'message' => $message,
+                'controller_name' => 'LoginController',
+                'message' => $message,
                 ]);
-    
-            }else{
-                $session->set('userId', $dbPremium);
-    
-                return $this->render('homepage/index.html.twig');
             }
         }     
     }
