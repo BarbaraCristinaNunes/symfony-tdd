@@ -150,4 +150,18 @@ class Bookings
             return true;
         }
     }
+
+    public  function checkEndAndStart(DateTime $start, DateTime $end)
+    {
+        
+        $startCheck = $start->gettimestamp();
+        $endCheck = $end->gettimestamp();
+       
+
+        if($startCheck > $endCheck){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
