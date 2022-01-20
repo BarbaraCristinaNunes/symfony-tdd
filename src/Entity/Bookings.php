@@ -126,13 +126,6 @@ class Bookings
         
         $time = ($diffHours * 60) + $diffMinutes;
         
-        
-        var_dump("day: ", $diffDay);
-        var_dump("month: ", $diffMonth);
-        var_dump("year: ", $diffYear);
-        var_dump("hour: ", $diffHours);
-        var_dump("min: ", $diffMinutes);
-        var_dump("min to hour: ", $time);
         if($diffDay == 0 && $diffMonth == 0 && $diffYear == 0 && $time >= 0 && $time <= 240){
 
            return true;
