@@ -8,6 +8,8 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+{{user}}
+
 <form method="post" action="booking">
 
 <label for="rooms"> Choose your room: </label>
@@ -18,15 +20,6 @@
                 
     {% endfor %}
 </select>
-
-<label for="users"> Choose your user: </label>
-<select name="user">
-    {% for user in users%}
-
-        <option value={{user.id}}>{{user.email}}</option>
-                
-    {% endfor %}
-</select></br>
     <input type="submit" name="submit">
 </form>
 
