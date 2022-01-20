@@ -83,7 +83,8 @@ class CheckRoomAvailabilityTest extends TestCase
             [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 11:05:05'), new DateTime('2020-12-12 15:05:05'), false],
             [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 09:05:05'), new DateTime('2020-12-12 13:05:05'), false],
             [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 18:05:05'), true],
-            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 06:05:05'), new DateTime('2020-12-12 10:05:05'), true],
+            [new DateTime('2020-12-12 06:05:05'), new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), true],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), false],
         ];
     }
 
