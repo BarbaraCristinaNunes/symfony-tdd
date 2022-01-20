@@ -142,9 +142,11 @@ class Bookings
         $endTime1 = $end1->gettimestamp();
         $endTime2 = $end2->gettimestamp();
 
-        if($startTime2 > $startTime1 && $startTime2 < $endTime1 && $endTime2 > $endTime1){
+        if($startTime2 > $startTime1 && $startTime2 < $endTime1){
             return false;
-        }elseif($startTime2 > $startTime1 - 14400000 && $startTime2 < $startTime1 && $endTime2 > $startTime1){
+        }elseif($endTime2 < $endTime1 && $endTime2 > $startTime1){
+            return false;
+        }elseif($startTime2 == $startTime1 && $endTime2 == $endTime1){
             return false;
         }else{
             return true;
