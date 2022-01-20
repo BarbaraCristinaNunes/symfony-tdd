@@ -84,7 +84,7 @@ The following conditions apply:
 
 ## Edge cases
 
-What is somebody needs all their credit to pay for a rental?
+What is somebody needs all their credit to pay for a rental? <b>OK</b>
 What if somebody enters an end date to start before the start date <b>OK</b>
 What is the dates of 2 bookings match exactly. <b>OK</b>
-What if somebody gives a negative number to addCredit (nice to have, see below)
+What if somebody gives a negative number to addCredit (nice to have, see below) <b>OK</b>
