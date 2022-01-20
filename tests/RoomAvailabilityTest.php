@@ -98,4 +98,25 @@ class CheckRoomAvailabilityTest extends TestCase
 
     }
 
+    public function dataProviderForCheckEndBeforeStart() : array
+    {
+        new DateTime();
+
+        return [
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 14:05:05'), true],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-11 18:05:05'), false],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 10:05:05'), true],
+            [new DateTime('2020-12-12 10:05:05'), new DateTime('2020-12-12 09:25:05'), false]
+        ];
+    }
+     /**
+     * function has to start with Test
+     * @dataProvider dataProviderForCheckEndBeforeStart
+     */
+    public function testCheckEndBeforeStart(DateTime $start, DateTime $end, bool $expectedOutput)
+    {
+        $booking = new Bookings();
+        $this->assertEquals($expectedOutput, $booking->checkEndAndStart($start, $end));
+    }
+
 }
