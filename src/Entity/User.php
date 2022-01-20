@@ -94,6 +94,10 @@ class User
 
         if($time * 0.03 < $credit){
             return true;
+        }elseif($time * 0.03 == $credit){
+            return true;
+        }elseif($credit < 0){
+            return false;
         }else{
             return false;
         }
